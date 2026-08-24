@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Meeting Summarizer
+
+Meeting Summarizer is a simple, cost-free, and private web application that transcribes and summarizes audio files entirely in your browser.
+
+## Features
+
+- Client-Side AI Processing: By utilizing Web Workers and Transformers.js, the application downloads and runs AI models entirely on your local machine. No audio is ever sent to a remote server, ensuring complete privacy.
+- Speech-to-Text (ASR): Integrates Xenova/whisper-base.en to accurately convert spoken audio into text.
+- Summarization: Uses Xenova/distilbart-cnn-6-6 to condense transcripts into high-level summaries.
+- Action Item Extraction: Features a keyword-based algorithm that scans the transcript and summary for actionable tasks.
+- Responsive Design: Built with Next.js and Tailwind CSS for a modern, glassmorphism-styled interface.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js installed on your local machine.
+
+### Installation
+
+1. Clone the repository or download the source code.
+2. Install the required dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Running the Application
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+To ensure proper compatibility with Web Workers during development, we recommend running the server with Webpack:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run dev -- --webpack
+```
 
-## Learn More
+Open `http://localhost:3000` in your browser.
 
-To learn more about Next.js, take a look at the following resources:
+Note: The first time you process an audio file, it may take a few moments as your browser downloads the Whisper and DistilBART models from the Hugging Face Hub. Once downloaded, they are cached for faster use on subsequent uploads.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Technology Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Next.js
+- React
+- Tailwind CSS
+- Transformers.js (for running Hugging Face models in the browser)
+- Web Workers
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is open-source and free to use.
